@@ -1,6 +1,7 @@
 from app.database import engine
 from models.base import Base
 from models.security_log import SecurityLog
+from models.security_alert import SecurityAlert
 
 
 def init_database():

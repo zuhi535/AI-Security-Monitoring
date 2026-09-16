@@ -1,7 +1,7 @@
 from datetime import datetime, timezone
 
 from sqlalchemy import DateTime, Integer, String, Text
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from models.base import Base
 
@@ -50,4 +50,10 @@ class SecurityLog(Base):
         String(20),
         default="INFO",
         nullable=False
+    )
+
+    alerts: Mapped[list["SecurityAlert"]] = relationship(
+        "SecurityAlert",
+        back_populates="security_log",
+        cascade="all, delete-orphan"
     )
